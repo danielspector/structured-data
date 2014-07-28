@@ -37,7 +37,7 @@
 (defn contains-point? [[[left1 left2] [right1 right2]] [point1 point2]]
   (and
    (<= left1 point1 right1)
-   (<= left2 point2 right2) 
+   (<= left2 point2 right2)
     ))
 
 (defn contains-rectangle? [outer [inner1 inner2]]
@@ -55,10 +55,11 @@
   (> (author-count book) 1))
 
 (defn add-author [book new-author]
-  :-)
+  (let [author-array (:authors book)]
+    (assoc book :authors (conj author-array new-author))))
 
 (defn alive? [author]
-  :-)
+  "foo")
 
 (defn element-lengths [collection]
   :-)

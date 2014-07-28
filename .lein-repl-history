@@ -5,3 +5,13 @@ exit
 (< 1 2)
 (> 2 1)
 exit
+(def cities {:title "The City and the City" :authors [china]})
+(def cities {:title "The City and the City" :authors ["china"]})
+cities
+(def new-author {:name "Gerald J. Sussman"})
+new-author
+(assoc cities :authors cities)
+(assoc cities :authors new-author)
+cities
+(:authors cities)
+exit
