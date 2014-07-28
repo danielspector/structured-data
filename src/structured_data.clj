@@ -1,16 +1,18 @@
-(ns structured-data)
+(ns structured-data
+  (:require [clojure.math.numeric-tower :as math]))
 
 (defn do-a-thing [x]
-  :-)
+  (let [squared (+ x x)]
+    (double (math/expt squared squared))))
 
 (defn spiff [v]
-  :-)
+  (+ (get v 0) (get v 2)))
 
 (defn cutify [v]
-  :-)
+  (conj v "<3"))
 
-(defn spiff-destructuring [v]
-  :-)
+(defn spiff-destructuring [[x y z]]
+  (+ x z))
 
 (defn point [x y]
   [x y])
@@ -19,22 +21,29 @@
   [bottom-left top-right])
 
 (defn width [rectangle]
-  :-)
+  (let [[[x1 y1] [x2 y2]] rectangle]
+    (- x2 x1)))
 
 (defn height [rectangle]
-  :-)
+  (let [[[x1 y1] [x2 y2]] rectangle]
+    (- y2 y1)))
 
 (defn square? [rectangle]
-  :-)
+  (== (height rectangle) (width rectangle)))
 
 (defn area [rectangle]
-  :-)
+  (* (height rectangle) (width rectangle)))
 
-(defn contains-point? [rectangle point]
-  :-)
+(defn contains-point? [[[left1 left2] [right1 right2]] [point1 point2]]
+  (and
+   (<= left1 point1 right1)
+   (<= left2 point2 right2) 
+    ))
 
-(defn contains-rectangle? [outer inner]
-  :-)
+(defn contains-rectangle? [outer [inner1 inner2]]
+  (and
+    (contains-point? outer inner1)
+    (contains-point? outer inner2)))
 
 (defn title-length [book]
   :-)
