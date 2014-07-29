@@ -15,3 +15,20 @@ new-author
 cities
 (:authors cities)
 exit
+(repeat 7 "hu")
+exit
+(def fir [1 2 3])
+(def sec [3 2 0 -3])
+(def thir [1 2 1 0])
+(<= thir)
+(apply <= thir)
+(apply <= fir)
+(apply <= sec)
+(apply >= sec)
+exit
+(clojure.set/union [1 2 3])
+(apply clojure.set/union [1 2 3])
+ (clojure.set/union [#{1 4} #{67 73}])
+ (apply clojure.set/union [#{1 4} #{67 73}])
+ (clojure.set/union #{1 4} #{67 73})
+exit

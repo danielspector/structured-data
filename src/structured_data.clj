@@ -59,52 +59,72 @@
     (assoc book :authors (conj author-array new-author))))
 
 (defn alive? [author]
-  "foo")
+  (not (contains? author :death-year)))
 
 (defn element-lengths [collection]
-  :-)
+  (map count collection))
 
 (defn second-elements [collection]
-  :-)
+  (let [seconds #(get % 1)]
+    (map seconds collection)))
 
 (defn titles [books]
-  :-)
+  (map :title books))
 
 (defn monotonic? [a-seq]
-  :-)
+  (or 
+    (apply <= a-seq)
+    (apply >= a-seq)))
 
 (defn stars [n]
-  :-)
+  (apply str (repeat n "*")))
 
 (defn toggle [a-set elem]
-  :-)
+  (if (contains? a-set elem)
+    (disj a-set elem)
+    (conj a-set elem)))    
 
 (defn contains-duplicates? [a-seq]
-  :-)
+  (not (= (count (set a-seq)) (count a-seq))))
 
 (defn old-book->new-book [book]
-  :-)
+  (let [new-authors (:authors book)]
+    (assoc book :authors (set new-authors))))
 
 (defn has-author? [book author]
-  :-)
+  (let [auth-list (:authors book)] 
+    (contains? auth-list author)))
 
 (defn authors [books]
-  :-)
+  (apply clojure.set/union (map :authors books)))
 
 (defn all-author-names [books]
-  :-)
+  (set (map :name (authors books))))
 
 (defn author->string [author]
-  :-)
+  (let [name (:name author)
+        years (str " (" (:birth-year author) " - " (:death-year author)")")]
+    (str name (if (:birth-year author) years))))
 
 (defn authors->string [authors]
-  :-)
+  (apply str (interpose ", " (map author->string authors))))
 
 (defn book->string [book]
-  :-)
+  (let [title (:title book)
+        authors (authors->string (:authors book))]
+    (str title ", written by " authors)))
+
+(defn books->string-test [books]
+  (let [book-line (if (empty? books) "No books"
+                      (str (count books) " " "book" (if (> (count books) 1) "s" "") "." ))]
+    (str book-line " " (apply book->string books) "." )))
 
 (defn books->string [books]
-  :-)
+  (if (empty? books)
+    "No books."
+    (str (count books) " " "book" (if (> (count books) 1) "s" "") "." " " 
+     (doall (map book->string books)) ".")))
+
 
 (defn books-by-author [author books]
   :-)
