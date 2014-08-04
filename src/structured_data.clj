@@ -120,10 +120,14 @@
     (str book-line " " (apply book->string books) "." )))
 
 (defn books->string [books]
+  (let [
+        book-count (count books)
+        book-reading (str book-count " book" (if (> book-count 1) "s") ".")
+        book-string (apply str (interpose ", " (map book->string books) ))]
   (if (empty? books)
     "No books."
-    (str (count books) " " "book" (if (> (count books) 1) "s" "") "." " " 
-     (doall (map book->string books)) ".")))
+  (str book-reading " " book-string ".")))) 
+  
 
 (defn books-by-author [author books]
   (filter #(has-author? % author) books))
